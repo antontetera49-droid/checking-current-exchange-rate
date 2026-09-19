@@ -1,0 +1,27 @@
+#here is your code
+import requests
+def get_exchange_rates():
+    url = "https://open.er-api.com/v6/latest/USD"
+    try:
+        response = requests.get(url, timeout=5)
+        if response.status_code == 200:
+            data = response.json()
+            rates = data.get("rates", {})
+            
+            # Достаем нужные валюты
+            pln_rate = rates.get("PLN")
+            eur_rate = rates.get("EUR")
+            
+            print(f"💰 Actual Exchange rate for today:")
+            print(f"1 USD = {pln_rate} PLN")
+            print(f"1 USD = {eur_rate} EUR")
+        else:
+            print(f"⚠️ API Error: {response.status_code}")     
+    except requests.exceptions.RequestException as e:
+        print(f"🚨 Connect Error: {e}")
+if __name__ == "__main__":
+    get_exchange_rates()
+#ALL THIS SCRIPT DOES IS CHECKING CURRENT EXCHANGE RATE
+If you need to customize, scale or integrate that into your another project, you can contact me on telegram: @Myhamed91
+HOW TO RUN:
+INSTALL PYTHON, REQUEST LIBLARY & START FILE
